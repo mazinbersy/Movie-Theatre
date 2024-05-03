@@ -1,20 +1,25 @@
-// Movie Theatre.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿#include <iostream>
+#include "Theatre.h"
+#include "Movie.h"
 
-#include <iostream>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int main() {
+    // Create Movie objects
+    vector<string> times1 = { "10:00 AM", "1:00 PM", "4:00 PM" };
+    Movie movie1("Movie 1", times1, 5, 10); // Example parameters for rows and columns
+
+    vector<string> times2 = { "11:00 AM", "2:00 PM", "5:00 PM" };
+    Movie movie2("Movie 2", times2, 6, 12); // Example parameters for rows and columns
+
+    // Create a vector of Movie objects
+    vector<Movie> movies = { movie1, movie2 };
+
+    // Create a Theatre object with the vector of Movie objects
+    Theatre theatre(movies);
+
+    // Call the bookSeat function
+    theatre.bookSeat();
+
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
