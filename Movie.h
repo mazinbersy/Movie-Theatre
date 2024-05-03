@@ -48,7 +48,7 @@ public:
 	void setBooking(string day, string time, vector<vector<bool>> bookings);
 	int getRows();
 	int getCols();
-	void updateBookingInfo(int);
+	void updateBookingInfo();
 	void reserveSeat(string, int, string);
 	bool isBooked(string,int, string);
 	~Movie();

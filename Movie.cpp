@@ -27,10 +27,7 @@ Movie::Movie(string n, vector<string> x, int r, int c)
         fridayBooking[x[i]] = booked;
         saturdayBooking[x[i]] = booked;
     }
-    // Call the function to update booking info for each day
-    for (int day = 1; day <= 7; ++day) {
-        updateBookingInfo(day);
-    }
+    //updateBookingInfo();
 }
 
 
@@ -139,43 +136,46 @@ int Movie::getCols()
     return columns;
 }
 
-void Movie::updateBookingInfo(int day) {
-    string fileName = name + "_" + to_string(day) + ".txt";
+void Movie::updateBookingInfo() {
+    for (int i = 1; i <= 7; i++) {
+        string fileName = name + "_" + to_string(i) + ".txt";
 
-    // Open file for reading
-    ifstream inputFile(fileName);
-    if (!inputFile.is_open()) {
-        cout << "Error opening file " << fileName << endl;
-        return; // Return if file cannot be opened
-    }
-
-    // Read file line by line
-    string line;
-    while (getline(inputFile, line)) {
-        // Extract seat and time information from the line
-        istringstream iss(line);
-        string seat, time;
-        if (!(iss >> seat >> time)) {
-            cout << "Invalid line format in file " << fileName << ": " << line << endl;
-            continue; // Skip to the next line if the line format is invalid
+        // Open file for reading
+        ifstream inputFile(fileName);
+        if (!inputFile.is_open()) {
+            continue; // Skip to the next day if file cannot be opened
         }
 
-        // Update the corresponding booking map based on the day
-        switch (day) {
-        case 1: sundayBooking[time][seat[0] - 'A'][stoi(seat.substr(1))] = true; break;
-        case 2: mondayBooking[time][seat[0] - 'A'][stoi(seat.substr(1))] = true; break;
-        case 3: tuesdayBooking[time][seat[0] - 'A'][stoi(seat.substr(1))] = true; break;
-        case 4: wednesdayBooking[time][seat[0] - 'A'][stoi(seat.substr(1))] = true; break;
-        case 5: thursdayBooking[time][seat[0] - 'A'][stoi(seat.substr(1))] = true; break;
-        case 6: fridayBooking[time][seat[0] - 'A'][stoi(seat.substr(1))] = true; break;
-        case 7: saturdayBooking[time][seat[0] - 'A'][stoi(seat.substr(1))] = true; break;
-        }
-    }
+        // Read file line by line
+        string line;
+        while (getline(inputFile, line) && !inputFile.eof()) {
+            // Extract seat and time information from the line
+            istringstream iss(line);
+            string seat, time;
+            if (!(iss >> seat >> time)) {
+                cout << "Invalid line format in file " << fileName << ": " << line << endl;
+                continue; // Skip to the next line if the line format is invalid
+            }
 
-    // Close the input file
-    inputFile.close();
+            int row = seat[0] - 'A';
+            string substr = seat.substr(1);
+            int col = stoi(substr);
+            // Update the corresponding booking map based on the day
+            switch (i) {
+            case 1:  sundayBooking[time][row][col] = true; break;
+            case 2:  mondayBooking[time][row][col] = true; break;
+            case 3:  tuesdayBooking[time][row][col] = true; break;
+            case 4:  wednesdayBooking[time][row][col] = true; break;
+            case 5:  thursdayBooking[time][row][col] = true; break;
+            case 6: fridayBooking[time][row][col] = true; break;
+            case 7:  saturdayBooking[time][row][col] = true; break;
+            }
+        }
+
+        // Close the input file
+        inputFile.close();
+    }
 }
-
 
 
 bool Movie::isBooked(string t, int date, string seat)
