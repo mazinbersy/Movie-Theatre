@@ -4,6 +4,7 @@ Theatre::Theatre(vector<Movie> m)
 {
 	movies = m;
 	constructBookingFiles();
+
 }
 
 void Theatre::populateTicketQueue()
@@ -118,12 +119,12 @@ void Theatre::bookSeat()
 			cout << "This seat is already booked for the selected time." << endl;
 			seatBooked = true;
 			return;
-		}	
+		}
 	}
 	if (!seatBooked)
 	{
 		outputFile << booking << endl;
-		movies[n - 1].bookSeat(time, d, seat);
+		movies[n - 1].reserveSeat(time, d, seat);
 	}
 
 	// Close input file
@@ -141,15 +142,8 @@ void Theatre::constructBookingFiles() {
 		string movieName = movies[i].getName();
 		for (int day = 1; day <= 7; day++) {
 			string fileName = movieName + "_" + to_string(day) + ".txt";
-			ofstream outputFile(fileName);
-			if (outputFile.is_open()) {
-				vector<string> times = movies[i].getTimes();
-				for (const string& time : times) {
-					outputFile << "Time: " << time << endl;
-				}
-				outputFile.close();
-			}
-			else {
+			ofstream outputFile(fileName, ios::app);
+			if (!outputFile.is_open()) {
 				cout << "Error creating file " << fileName << endl;
 			}
 		}

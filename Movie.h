@@ -5,6 +5,8 @@
 #include <vector>
 #include <unordered_map>
 #include <string>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 
@@ -46,8 +48,9 @@ public:
 	void setBooking(string day, string time, vector<vector<bool>> bookings);
 	int getRows();
 	int getCols();
-	void bookSeat(string, int, string);
-
+	void updateBookingInfo(int);
+	void reserveSeat(string, int, string);
+	bool isBooked(string,int, string);
 	~Movie();
 
 };
