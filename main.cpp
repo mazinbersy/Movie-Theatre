@@ -6,10 +6,10 @@ using namespace std;
 
 int main() {
     // Create Movie objects
-    vector<string> times1 = { "10:00 AM", "1:00 PM", "4:00 PM" };
+    vector<string> times1 = { "10:00AM", "1:00PM", "4:00PM" };
     Movie movie1("Movie 1", times1, 5, 10); // Example parameters for rows and columns
 
-    vector<string> times2 = { "11:00 AM", "2:00 PM", "5:00 PM" };
+    vector<string> times2 = { "11:00AM", "2:00PM", "5:00PM" };
     Movie movie2("Movie 2", times2, 6, 12); // Example parameters for rows and columns
 
     // Create a vector of Movie objects

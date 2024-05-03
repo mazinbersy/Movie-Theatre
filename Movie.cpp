@@ -27,7 +27,7 @@ Movie::Movie(string n, vector<string> x, int r, int c)
         fridayBooking[x[i]] = booked;
         saturdayBooking[x[i]] = booked;
     }
-    //updateBookingInfo();
+    updateBookingInfo();
 }
 
 
@@ -159,7 +159,8 @@ void Movie::updateBookingInfo() {
 
             int row = seat[0] - 'A';
             string substr = seat.substr(1);
-            int col = stoi(substr);
+            int col = stoi(substr)-1;
+
             // Update the corresponding booking map based on the day
             switch (i) {
             case 1:  sundayBooking[time][row][col] = true; break;
@@ -171,7 +172,7 @@ void Movie::updateBookingInfo() {
             case 7:  saturdayBooking[time][row][col] = true; break;
             }
         }
-
+       
         // Close the input file
         inputFile.close();
     }
