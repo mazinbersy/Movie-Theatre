@@ -50,6 +50,7 @@ public:
 	int getCols();
 	void updateBookingInfo();
 	void reserveSeat(string, int, string);
+	void cancelSeat(string, int, string);
 	bool isBooked(string,int, string);
 	~Movie();
 

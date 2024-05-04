@@ -213,6 +213,22 @@ void Movie::reserveSeat(string t, int d, string seat)
     }
 }
 
+void Movie::cancelSeat(string t, int d, string seat)
+{
+    int row = seat[0] - 'A';
+    string substr = seat.substr(1);
+    int col = stoi(substr) - 1;
+    switch (d)
+    {
+    case 1: sundayBooking[t][row][col] = false; break;
+    case 2:mondayBooking[t][row][col] = false; break;
+    case 3:tuesdayBooking[t][row][col] = false; break;
+    case 4:wednesdayBooking[t][row][col] = false; break;
+    case 5:thursdayBooking[t][row][col] = false; break;
+    case 6:fridayBooking[t][row][col] = false; break;
+    case 7:saturdayBooking[t][row][col] = false; break;
+    }
+}
 void Movie::setBooking(string day, string time, vector<vector<bool>> bookings) {
     // Set the booking information for the specified day and time
     if (day == "Sunday") sundayBooking[time] = bookings;

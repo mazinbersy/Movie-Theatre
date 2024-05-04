@@ -27,12 +27,20 @@ public:
 	void populateTicketQueue();
 	void populatesnackQueue();
 	int getTicketWaitingTime();
+	int getTicketCustomers();
+	int getSnackCustomers();
 	int getSnackWaitingTime();
+	queue<int> getTicketQueue();
+	queue<int> getSnackQueue();
 	void joinTicketQueue();
 	void joinSnackQueue();
 	void bookSeat();
 	void cancelReservation();
 	void constructBookingFiles();
+	void serveTicketCustomer();
+	void serveSnackCustomer();
+
+
 
 };
 
