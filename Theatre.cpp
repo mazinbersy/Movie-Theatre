@@ -11,7 +11,6 @@ Theatre::Theatre(vector<Movie> m)
 
 void Theatre::populateTicketQueue()
 {
-	srand(time(NULL));
 	ticketCustomers = rand() % 10;
 	for (int i = 0; i < ticketCustomers; i++)
 	{
@@ -23,7 +22,6 @@ void Theatre::populateTicketQueue()
 
 void Theatre::populatesnackQueue()
 {
-	srand(time(NULL));
 	snackCustomers = rand() % 10;
 	for (int i = 0; i < snackCustomers; i++)
 	{
@@ -240,6 +238,8 @@ void Theatre::cancelReservation()
 		rename("temp.txt", fileName.c_str());
 		movies[n - 1].cancelSeat(time, d, seat);
 		cout << "Reservation cancelled successfully." << endl;
+
+		movies[n - 1].displayBookingInfo(time,d);
 	}
 	else {
 		cout << "Reservation not found." << endl;

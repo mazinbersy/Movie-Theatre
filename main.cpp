@@ -7,8 +7,11 @@
 using namespace std;
 
 
+
 int main()
 {
+	srand(time(NULL));
+
 	// Create Movie objects
 	vector<string> times1 = { "10:00AM", "1:00PM", "4:00PM" };
 	Movie movie1("Movie 1", times1, 5, 10); // Example parameters for rows and columns
@@ -40,7 +43,7 @@ int main()
 	while (ticketORsnack != 0 && ticketORsnack != 1);
 
 	cout << endl;
-	if (ticketORsnack == 1)
+	if (ticketORsnack == 0)
 	{
 		theatre.joinTicketQueue();
 		cout << "There are " << theatre.getTicketCustomers() << " Waiting Ahead of You in Line - Approximate Waiting Time: " << theatre.getTicketWaitingTime() << " Minutes." << endl;

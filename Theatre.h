@@ -20,6 +20,11 @@ private:
 	queue<int> snackQueue;
 	vector<Movie> movies;
 
+	void randomize_seed()
+	{
+		unsigned int seed = static_cast<unsigned int>(time(nullptr));
+		srand(seed);
+	}
 
 
 public:
