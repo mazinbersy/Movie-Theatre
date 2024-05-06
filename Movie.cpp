@@ -157,7 +157,7 @@ void Movie::updateBookingInfo() {
                 continue; // Skip to the next line if the line format is invalid
             }
 
-            int row = seat[0] - 'A';
+            int row = toupper(seat[0]) - 'A';
             string substr = seat.substr(1);
             int col = stoi(substr)-1;
 
@@ -181,7 +181,7 @@ void Movie::updateBookingInfo() {
 
 bool Movie::isBooked(string t, int date, string seat)
 {
-    int row = seat[0] - 'A';
+    int row = toupper(seat[0]) - 'A';
     string substr = seat.substr(1);
     int col = stoi(substr);
     switch (date)
@@ -198,7 +198,7 @@ bool Movie::isBooked(string t, int date, string seat)
 
 void Movie::reserveSeat(string t, int d, string seat)
 {
-    int row = seat[0] - 'A';
+    int row = toupper(seat[0]) - 'A';
     string substr = seat.substr(1);
     int col = stoi(substr) -1;
     switch(d)
@@ -215,7 +215,7 @@ void Movie::reserveSeat(string t, int d, string seat)
 
 void Movie::cancelSeat(string t, int d, string seat)
 {
-    int row = seat[0] - 'A';
+    int row = toupper(seat[0]) - 'A';
     string substr = seat.substr(1);
     int col = stoi(substr) - 1;
     switch (d)
@@ -228,6 +228,15 @@ void Movie::cancelSeat(string t, int d, string seat)
     case 6:fridayBooking[t][row][col] = false; break;
     case 7:saturdayBooking[t][row][col] = false; break;
     }
+}
+bool Movie::validateSeat(string seat)
+{
+    if (seat.empty() || seat.length()==1)
+        return false;
+    if (isalpha(seat[0]) && !isdigit(seat[0]) && (toupper(seat[0]) < 'A' + rows && toupper(seat[0]) >= 'A'))
+        if(stoi(seat.substr(1)) >= 1 && stoi(seat.substr(1)) <= columns)
+        return true;
+    return false;
 }
 void Movie::setBooking(string day, string time, vector<vector<bool>> bookings) {
     // Set the booking information for the specified day and time

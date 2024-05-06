@@ -52,6 +52,7 @@ public:
 	void reserveSeat(string, int, string);
 	void cancelSeat(string, int, string);
 	bool isBooked(string,int, string);
+	bool validateSeat(string);
 	~Movie();
 
 };

@@ -133,6 +133,11 @@ void Theatre::bookSeat()
 		while (seatBooked) {
 			cout << "Choose Seat to Book: ";
 			cin >> seat;
+			while (!movies[n - 1].validateSeat(seat))
+			{
+				cout << "Invalid Seat: Try Again." << endl;
+				cin >> seat;
+			}
 
 			// Read file line by line
 			string booking = seat + " " + time;
@@ -204,7 +209,11 @@ void Theatre::cancelReservation()
 	string seat;
 	cout << "Choose Seat to Cancel: ";
 	cin >> seat;
-
+	while (!movies[n - 1].validateSeat(seat))
+	{
+		cout << "Invalid Seat: Try Again." << endl;
+		cin >> seat;
+	}
 	// Construct file name
 	string fileName = movies[n - 1].getName() + "_" + to_string(d) + ".txt";
 
