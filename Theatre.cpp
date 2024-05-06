@@ -73,41 +73,45 @@ void Theatre::joinSnackQueue()
 
 void Theatre::bookSeat()
 {
-	cout << "Choose Movie You Wish to Book - Enter Corresponding Number: " << endl;
-	for (int i = 0; i < movies.size(); i++)
-	{
-		cout << i + 1 << ": " << movies[i].getName() << endl;
-	}
-	int n;
-
+	int n, d, t; string time;
 	do
 	{
-		cin >> n;
-		if (n > movies.size() || n < 1) cout << "Invalid Input" << endl;
-	} while (n > movies.size() || n < 1);
-	cout << "Choose Day - Enter Corresponding Number: " << endl;
-	cout << "1: Sunday" << endl;
-	cout << "2: Monday" << endl;
-	cout << "3: Tuesday" << endl;
-	cout << "4: Wednesday" << endl;
-	cout << "5: Thursday" << endl;
-	cout << "6: Friday" << endl;
-	cout << "7: Saturday" << endl;
+		cout << "Choose Movie You Wish to Book - Enter Corresponding Number: " << endl;
+		for (int i = 0; i < movies.size(); i++)
+		{
+			cout << i + 1 << ": " << movies[i].getName() << endl;
+		}
+		do
+		{
+			cin >> n;
+			if (n > movies.size() || n < 1) cout << "Invalid Input" << endl;
+		} while (n > movies.size() || n < 1);
+		cout << "Choose Day - Enter Corresponding Number: " << endl;
+		cout << "1: Sunday" << endl;
+		cout << "2: Monday" << endl;
+		cout << "3: Tuesday" << endl;
+		cout << "4: Wednesday" << endl;
+		cout << "5: Thursday" << endl;
+		cout << "6: Friday" << endl;
+		cout << "7: Saturday" << endl;
 
-	int d;
-	cin >> d;
+		cin >> d;
 
 
-	cout << "Choose Time - Enter Corresponding Number: " << endl;
-	for (int i = 0; i < movies[n - 1].getTimes().size(); i++)
-	{
-		cout << i + 1 << ": " << movies[n - 1].getTimes()[i] << endl;
+		cout << "Choose Time - Enter Corresponding Number: " << endl;
+		for (int i = 0; i < movies[n - 1].getTimes().size(); i++)
+		{
+			cout << i + 1 << ": " << movies[n - 1].getTimes()[i] << endl;
 
+		}
+		cin >> t;
+		time = movies[n - 1].getTimes()[t - 1];
+
+		if (movies[n - 1].soldOut(time, d)) cout << "Show is Sold Out: Pick a different Show: ";
 	}
-	int t;
-	cin >> t;
-	string time;
-	time = movies[n - 1].getTimes()[t - 1];
+
+	while (movies[n - 1].soldOut(time, d));
+
 
 	int numSeats;
 	cout << "How Many Seats Would You Like to Book: " << endl;
@@ -144,7 +148,7 @@ void Theatre::bookSeat()
 			string line;
 			seatBooked = false; // Reset to false for each iteration
 			inputFile.clear(); // Clear error flags
-			inputFile.seekg(0, std::ios::beg); // Move file pointer to the beginning
+			inputFile.seekg(0, ios::beg); // Move file pointer to the beginning
 			while (getline(inputFile, line)) {
 				// Check if the line contains the time
 				if (line == booking) {
@@ -169,12 +173,13 @@ void Theatre::bookSeat()
 
 void Theatre::cancelReservation()
 {
+	int n, d, t; string time;
+	
 	cout << "Choose Movie You Wish to Cancel Reservation For - Enter Corresponding Number: " << endl;
 	for (int i = 0; i < movies.size(); i++)
 	{
 		cout << i + 1 << ": " << movies[i].getName() << endl;
 	}
-	int n;
 
 	do
 	{
@@ -190,7 +195,6 @@ void Theatre::cancelReservation()
 	cout << "6: Friday" << endl;
 	cout << "7: Saturday" << endl;
 
-	int d;
 	cin >> d;
 
 
@@ -200,10 +204,13 @@ void Theatre::cancelReservation()
 		cout << i + 1 << ": " << movies[n - 1].getTimes()[i] << endl;
 
 	}
-	int t;
 	cin >> t;
-	string time;
 	time = movies[n - 1].getTimes()[t - 1];
+	
+	if (movies[n - 1].showEmpty(time,d));
+	{
+		cout << "Nothing is Booked in this Show!" << endl; return;
+	}
 
 	movies[n - 1].displayBookingInfo(time, d);
 	string seat;

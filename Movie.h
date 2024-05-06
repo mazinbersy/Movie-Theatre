@@ -53,6 +53,8 @@ public:
 	void cancelSeat(string, int, string);
 	bool isBooked(string,int, string);
 	bool validateSeat(string);
+	bool soldOut(string, int);
+	bool showEmpty(string, int);
 	~Movie();
 
 };

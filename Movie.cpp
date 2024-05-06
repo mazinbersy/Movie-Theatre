@@ -238,6 +238,160 @@ bool Movie::validateSeat(string seat)
         return true;
     return false;
 }
+bool Movie::soldOut(string t, int day)
+{
+    switch (day)
+    {
+    case 1: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (!sundayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 2: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (!mondayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 3: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (!tuesdayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 4: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (!wednesdayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 5: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (!thursdayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 6: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (!fridayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 7: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (!saturdayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    }
+}
+ 
+bool Movie::showEmpty(string t, int day)
+{
+    switch (day)
+    {
+    case 1: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (sundayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 2: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (mondayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 3: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (tuesdayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 4: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (wednesdayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 5: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (thursdayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 6: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (fridayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    case 7: {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (saturdayBooking[t][i][j]) return false;
+            }
+        }
+        return true;
+    }
+    }
+}
+   
 void Movie::setBooking(string day, string time, vector<vector<bool>> bookings) {
     // Set the booking information for the specified day and time
     if (day == "Sunday") sundayBooking[time] = bookings;
