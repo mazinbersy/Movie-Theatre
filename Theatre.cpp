@@ -137,6 +137,7 @@ void Theatre::bookSeat()
 		while (seatBooked) {
 			cout << "Choose Seat to Book: ";
 			cin >> seat;
+			cout << endl;
 			while (!movies[n - 1].validateSeat(seat))
 			{
 				cout << "Invalid Seat: Try Again." << endl;
@@ -161,11 +162,12 @@ void Theatre::bookSeat()
 			{
 				outputFile << booking << endl;
 				movies[n - 1].reserveSeat(time, d, seat);
-				cout << "Seat Booked Successfully!" << endl;
+				cout << "Seat Booked Successfully!" << endl<<endl;
 			}
 		}
+		
 	}
-
+	movies[n - 1].displayBookingInfo(time, d);
 	// Close input file
 	inputFile.close();
 	outputFile.close();

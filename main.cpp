@@ -14,16 +14,16 @@ int main()
 
 	// Create Movie objects
 	vector<string> times1 = { "10:00AM", "1:00PM", "4:00PM" };
-	Movie movie1("Movie 1", times1, 5, 10); // Example parameters for rows and columns
+	Movie movie1("Oppenheimer", times1, 5, 10); // Example parameters for rows and columns
 
 	vector<string> times2 = { "11:00AM", "2:00PM", "5:00PM" };
-	Movie movie2("Movie 2", times2, 6, 12); // Example parameters for rows and columns
+	Movie movie2("Kung Fu Panda 4", times2, 6, 12); // Example parameters for rows and columns
 
 	vector<string> times3 = { "2:30PM", "7:00PM", "10:15PM" };
-	Movie movie3("Movie 3", times3, 6, 12); // Example parameters for rows and columns
+	Movie movie3("The Fall Guy", times3, 6, 12); // Example parameters for rows and columns
 
 	vector<string> times4 = { "1:00PM", "6:10PM", "12:00AM" };
-	Movie movie4("Movie 4", times2, 8, 12); // Example parameters for rows and columns
+	Movie movie4("Kingdom of the Planet of the Apes", times2, 8, 12); // Example parameters for rows and columns
 
 	// Create a vector of Movie objects
 	vector<Movie> movies = { movie1, movie2, movie3, movie4 };
@@ -57,17 +57,18 @@ int main()
 			this_thread::sleep_for(chrono::seconds(3));
 		}
 		cout << endl << endl;
-		theatre.bookSeat();
-		cout << endl << endl;
-		cout << "Would You Like to Cancel a Reservation: Enter 0 for NO or Enter 1 for YES: ";
+		cout << "Would You Like to Book or Cancel a Reservation: Enter 0 for Book or Enter 1 for Cancel: ";
 		do
 		{
 			cin >> cancel;
 			if (cancel != 0 && cancel != 1) cout << "Invalid Input: Try Again." << endl;
 		} while (cancel != 0 && cancel != 1);
+		cout << endl << endl;
 
 		if (cancel == 1)
 			theatre.cancelReservation();
+		else
+			theatre.bookSeat();
 		
 		cout << endl << endl;
 
