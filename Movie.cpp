@@ -1,12 +1,5 @@
 ﻿#include "Movie.h"
 
-Movie::Movie(string n, int r, int c)
-{
-	name = n;
-    rows = r;
-    columns = c;
-}
-
 Movie::Movie(string n, vector<string> x, int r, int c)
 {
     name = n;
@@ -390,6 +383,7 @@ bool Movie::showEmpty(string t, int day)
         return true;
     }
     }
+    return true;
 }
    
 void Movie::setBooking(string day, string time, vector<vector<bool>> bookings) {

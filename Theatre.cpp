@@ -208,8 +208,7 @@ void Theatre::cancelReservation()
 	}
 	cin >> t;
 	time = movies[n - 1].getTimes()[t - 1];
-	
-	if (movies[n - 1].showEmpty(time,d));
+	if (movies[n - 1].showEmpty(time,d))
 	{
 		cout << "Nothing is Booked in this Show!" << endl; return;
 	}

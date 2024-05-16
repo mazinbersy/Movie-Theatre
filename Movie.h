@@ -33,7 +33,6 @@ private:
 
 
 public:
-	Movie(string, int , int);
 	Movie(string, vector<string>, int , int);
 	string getName();
 	vector<string> getTimes();
